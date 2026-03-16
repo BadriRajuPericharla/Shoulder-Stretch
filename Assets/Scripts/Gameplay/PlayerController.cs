@@ -88,4 +88,8 @@ public class PlayerController : MonoBehaviour
         shieldTimer = shieldDuration;
         OnShieldStatusChanged?.Invoke(true);
     }
+    public void Heal(int amount)
+    {
+        currentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
+    }
 }
