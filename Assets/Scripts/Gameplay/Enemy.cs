@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Threading;
 public class Enemy : MonoBehaviour
 {
     public event Action<Enemy> OnEnemyDeath;
@@ -9,11 +10,20 @@ public class Enemy : MonoBehaviour
     private int currentHealth;
     private Transform player;
     private PlayerController playerCtrl;
+    private GameObject HealthPack;
+    void Awake()
+    {
+        HealthPack=transform.Find("HealthPack").gameObject;
+    }
     public void Initialize(Transform target)
     {
         player = target;
         playerCtrl = player.GetComponent<PlayerController>();
         currentHealth = health;
+        if (HealthPack != null)
+        {
+            HealthPack.SetActive(UnityEngine.Random.value<0.3f);
+        }
         gameObject.SetActive(true);
     }
     private void Update()
@@ -40,6 +50,10 @@ public class Enemy : MonoBehaviour
     }
     private void Die()
     {
+        if (HealthPack != null && HealthPack.activeSelf)
+        {
+            playerCtrl.Heal(30);  
+        }
         OnEnemyDeath?.Invoke(this);
         gameObject.SetActive(false);
     }

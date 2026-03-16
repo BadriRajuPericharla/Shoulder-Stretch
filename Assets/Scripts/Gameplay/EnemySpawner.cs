@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Enemy enemyPrefab;
     [SerializeField] private float spawnWidth = 8f;
     [SerializeField] private float spawnDistance = 30f;
+   
+    
     private List<Enemy> pool = new List<Enemy>();
     private float spawnTimer;
     private void Start()
@@ -15,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
         if (gameManager == null) gameManager = FindFirstObjectByType<GameStateManager>();
         if (difficultyScaler == null) difficultyScaler = FindFirstObjectByType<DifficultyScaler>();
         if (player == null) player = FindFirstObjectByType<PlayerController>();
+        
     }
     private void Update()
     {
@@ -32,6 +37,7 @@ public class EnemySpawner : MonoBehaviour
         Vector3 pos = player.transform.position + Vector3.forward * spawnDistance + Vector3.right * Random.Range(-spawnWidth, spawnWidth);
         enemy.transform.position = pos;
         enemy.Initialize(player.transform);
+        
     }
     private Enemy GetFromPool()
     {
