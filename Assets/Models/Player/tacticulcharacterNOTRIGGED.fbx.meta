@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: cbe62f7a41f040e479eaf8ecc010e004
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: "Invalid copied Avatar Rig Configuration:\n\tNo human bone found.
+      Ensure both rig type match\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: tacticulcharacterNOTRIGGED(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JumpsuitLowPoly
+      parentName: tacticulcharacterNOTRIGGED(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: BootsLowPoly
+      parentName: tacticulcharacterNOTRIGGED(Clone)
+      position: {x: 0.50865334, y: 0.3324459, z: 0.054110225}
+      rotation: {x: -0.7070235, y: -0.010856073, z: 0.0108560715, w: 0.7070234}
+      scale: {x: 0.9555, y: 0.9555, z: 0.9555}
+    - name: GlovesLowPoly
+      parentName: tacticulcharacterNOTRIGGED(Clone)
+      position: {x: -1.4856826, y: 2.5656095, z: 0.11066502}
+      rotation: {x: 0.6408564, y: 0.29883623, z: -0.6408564, w: 0.29883623}
+      scale: {x: 0.395212, y: 0.395212, z: 0.395212}
+    - name: Line013
+      parentName: tacticulcharacterNOTRIGGED(Clone)
+      position: {x: -0.0016327491, y: 4.199597, z: -0.033733092}
+      rotation: {x: -2.1648908e-17, y: 0.7071067, z: 2.1648902e-17, w: 0.7071069}
+      scale: {x: 1.159293, y: 1.159293, z: 1.0426251}
+    - name: Line014
+      parentName: tacticulcharacterNOTRIGGED(Clone)
+      position: {x: 0.00000019378662, y: 4.349039, z: 0.21180218}
+      rotation: {x: -2.1648908e-17, y: 0.7071067, z: 2.1648902e-17, w: 0.7071069}
+      scale: {x: 1.159293, y: 1.159293, z: 1.0426251}
+    - name: Box001
+      parentName: tacticulcharacterNOTRIGGED(Clone)
+      position: {x: -0.0053115156, y: 4.4694943, z: -0.033794377}
+      rotation: {x: -0.6904625, y: 0, z: -0, w: 0.72336817}
+      scale: {x: 0.407644, y: 0.657214, z: 0.657214}
+    - name: polySurface313
+      parentName: tacticulcharacterNOTRIGGED(Clone)
+      position: {x: 0.0013735445, y: 4.427972, z: 0.039383296}
+      rotation: {x: -0.7624228, y: 0.000000007592216, z: 0.000000010590226, w: 0.64707917}
+      scale: {x: 0.98449904, y: 0.984498, z: 0.98449904}
+    - name: Plate Low Poly
+      parentName: tacticulcharacterNOTRIGGED(Clone)
+      position: {x: 0.0012547084, y: 3.416156, z: -0.03240237}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1.033018, y: 1.033018, z: 1.033018}
+    - name: Box002
+      parentName: tacticulcharacterNOTRIGGED(Clone)
+      position: {x: -0.5659529, y: 3.8528621, z: -0.13749109}
+      rotation: {x: -0.6850822, y: -0.175107, z: 0.175107, w: 0.6850822}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Plate Low Poly001
+      parentName: tacticulcharacterNOTRIGGED(Clone)
+      position: {x: 0.19509952, y: 3.346632, z: -0.519409}
+      rotation: {x: -0.7384178, y: 0, z: -0, w: 0.6743435}
+      scale: {x: 1.033018, y: 1.033017, z: 1.211277}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
