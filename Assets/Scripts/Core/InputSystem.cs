@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using System.Collections;
 public enum ActionType { None, LeftPunch, RightPunch, PickupGun, Shoot, Shield }
 public class InputSystem : MonoBehaviour
 {
@@ -67,14 +66,12 @@ public class InputSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             TryPerformAction(ActionType.LeftPunch);
-            // animator.SetTrigger("LeftPunch");
-            // StartCoroutine(SlowDownRoutine());
+            animator.SetTrigger("LeftPunch");
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             TryPerformAction(ActionType.RightPunch);
-            // animator.SetTrigger("RightPunch");
-            // StartCoroutine(SlowDownRoutine());
+            animator.SetTrigger("RightPunch");
         }
         if (Input.GetKeyDown(KeyCode.W)) TryPerformAction(ActionType.PickupGun);
         if (Input.GetKeyDown(KeyCode.S)) TryPerformAction(ActionType.Shoot);
@@ -131,20 +128,5 @@ public class InputSystem : MonoBehaviour
             ActionType.Shield => 1f - (shieldTimer / (shieldCooldown * mult)),
             _ => 1f
         };
-
-
     }
-
-    // IEnumerator SlowDownRoutine()
-    // {
-    //     animator.SetFloat("RunSpeed", 0.4f);
-    //     // PlayerController.Instance.SetSpeedMultiplier(1f);
-
-
-    //     yield return new WaitForSeconds(0.8f);
-
-
-    //     animator.SetFloat("RunSpeed", 1f);
-    //     // PlayerController.Instance.SetSpeedMultiplier(1f);
-    // }
 }
