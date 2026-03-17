@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameStateManager gameManager;
     [SerializeField] private DifficultyScaler difficultyScaler;
     [SerializeField] private int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
     [SerializeField] private int maxAmmo = 10;
     private int currentAmmo;
     [SerializeField] private float shieldDuration = 2.0f;
@@ -91,5 +91,6 @@ public class PlayerController : MonoBehaviour
     public void Heal(int amount)
     {
         currentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 }
