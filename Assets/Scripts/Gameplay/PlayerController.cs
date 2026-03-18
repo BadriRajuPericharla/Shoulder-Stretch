@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public int MaxHealth => maxHealth;
     public int CurrentAmmo => currentAmmo;
     public bool IsShieldActive => isShieldActive;
+
+    public UIManager uiManager;
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(gameObject);
@@ -59,6 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isShieldActive) return;
         currentHealth -= damage;
+        uiManager.ShowDamageBlink();
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
         if (currentHealth <= 0) Die();
     }

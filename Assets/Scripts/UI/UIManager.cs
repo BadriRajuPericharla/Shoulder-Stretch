@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameStateManager gameManager;
-    [SerializeField] private GameObject menuPanel, difficultyPanel, hudPanel, pausePanel, dashboardPanel, analyticsPanel, graphPanel, gameOverPanel;
+    [SerializeField] private GameObject menuPanel, difficultyPanel, hudPanel, pausePanel, dashboardPanel, analyticsPanel, graphPanel, gameOverPanel, damagePanel;
     [SerializeField] private Button startButton, beginnerBtn, moderateBtn, expertBtn, dashboardNxtBtn, analyticsNxtBtn, graphNxtBtn, gameOverNextBtn, gameOverRestartBtn;
     private void Start()
     {
@@ -77,6 +78,18 @@ public class UIManager : MonoBehaviour
     }
 
 
+    public void ShowDamageBlink()
+    {
+        StartCoroutine(BlickRoutine());
+    }
+
+
+    public IEnumerator BlickRoutine()
+    {
+        damagePanel.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        damagePanel.SetActive(false);
+    }
 
 
 }

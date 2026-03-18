@@ -539,6 +539,7 @@ MonoBehaviour:
   damage: 20
   packSpeed: 32
   deathParticle: {fileID: 9062380442440135033}
+  damagePanel: {fileID: 0}
   lane: 0
 --- !u!137 &2586300826294362526
 SkinnedMeshRenderer:

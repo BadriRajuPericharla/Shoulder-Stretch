@@ -10,6 +10,9 @@ public class GameStateManager : MonoBehaviour
     public event Action<Difficulty> OnDifficultyChanged;
     [SerializeField] private GameState currentState = GameState.Idle;
     [SerializeField] private Difficulty currentDifficulty = Difficulty.Beginner;
+    [SerializeField] private Enemy enemy;
+    [SerializeField] private PlayerController playerController;
+    [SerializeField] private EnemySpawner enemySpawner;
     public GameState CurrentState => currentState;
     public Difficulty CurrentDifficulty => currentDifficulty;
     public bool IsPlaying => currentState == GameState.Running || currentState == GameState.Combat;
@@ -53,6 +56,10 @@ public class GameStateManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SetState(GameState.GameOver);
+        enemy.enabled = false;
+        playerController.enabled = false;
+        enemySpawner.enabled = false;
+
     }
     public void ReturnToIdle()
     {
