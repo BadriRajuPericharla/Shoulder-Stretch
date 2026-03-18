@@ -39,7 +39,7 @@ public class GraphController : MonoBehaviour
         dot.GetComponent<Image>().sprite = dotSprite;
         RectTransform dotRectTf = dot.GetComponent<RectTransform>();
         dotRectTf.anchoredPosition = anchoredPosition;
-        dotRectTf.sizeDelta = new Vector2(11, 11);
+        dotRectTf.sizeDelta = new Vector2(30, 30);
         dotRectTf.anchorMin = new Vector2(0, 0);
         dotRectTf.anchorMax = new Vector2(0, 0);
 
@@ -111,7 +111,7 @@ public class GraphController : MonoBehaviour
                 RectTransform yDashRectTf = yDash.GetComponent<RectTransform>();
                 yDash.SetActive(true);
                 yDashRectTf.anchoredPosition = new Vector2(graphCotainer.sizeDelta.x / 2f, normalizedValue * graphHeight);
-                yDash.GetComponent<Image>().color = new Color(1, 1, 1, 0.7f);
+                yDash.GetComponent<Image>().color = new Color(255, 127, 127, 0.7f);
                 yDashRectTf.sizeDelta = new Vector2(graphCotainer.sizeDelta.x, 3f);
                 yDashRectTf.anchorMin = new Vector2(0, 0);
                 yDashRectTf.anchorMax = new Vector2(0, 0);
@@ -128,7 +128,7 @@ public class GraphController : MonoBehaviour
         GameObject connectionLine = new GameObject("dotConnection", typeof(Image));
         connectionLine.transform.SetParent(graphCotainer, false);
         connectionLine.GetComponent<Image>().sprite = lineSprite;
-        connectionLine.GetComponent<Image>().color = Color.cyan;
+        connectionLine.GetComponent<Image>().color = Color.red;
 
         Vector2 dir = (dotBPos - dotAPos).normalized;
         float distance = Vector2.Distance(dotAPos, dotBPos);
