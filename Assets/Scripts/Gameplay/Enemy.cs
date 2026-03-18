@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
 {
     public event Action<Enemy> OnEnemyDeath;
     [SerializeField] private int health = 100;
-    [SerializeField] private float speed = 3f;
+    [SerializeField] private float speed = 1f;
     [SerializeField] private int damage = 20;
     [SerializeField]private float packSpeed=16f;
     [SerializeField]private ParticleSystem deathParticle;
@@ -24,9 +24,12 @@ public class Enemy : MonoBehaviour
 
     private bool hasAttacked = false;
 
+    
+
     void Start()
     {
         animator = GetComponent<Animator>();
+        
     }
     void Awake()
     {
@@ -63,8 +66,9 @@ public class Enemy : MonoBehaviour
                 AmmoPack.transform.localPosition = packLocalPos;
                 AmmoPack.SetActive(false);
                 movePack = false;
-                OnEnemyDeath?.Invoke(this);
-                gameObject.SetActive(false);
+
+                Die();
+                
             }
             return;
         }
@@ -76,7 +80,7 @@ public class Enemy : MonoBehaviour
         transform.LookAt(player);
         
 
-        if (distance > 3f)
+        if (distance > 2f)
         {
             transform.position += direction * speed * Time.deltaTime;
         }
@@ -112,6 +116,7 @@ public class Enemy : MonoBehaviour
             return;
              
         }
+        animator.SetTrigger("IsDead");
         Invoke(nameof(DisableEnemy), 2f);
     }
     void DisableEnemy()
