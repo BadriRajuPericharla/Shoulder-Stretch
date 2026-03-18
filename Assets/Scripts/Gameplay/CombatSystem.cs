@@ -6,7 +6,7 @@ public class CombatSystem : MonoBehaviour
     [SerializeField] private float shootRange = 50f;
     [SerializeField] private int shootDamage = 100;
     [SerializeField] private EnemySpawner spawner;
-    [SerializeField] private CameraFollow camera;
+    [SerializeField] private CameraFollow cameraFollow;
     private void Start()
     {
         if (inputSystem == null) inputSystem = FindFirstObjectByType<InputSystem>();
@@ -31,7 +31,7 @@ public class CombatSystem : MonoBehaviour
         if (player == null || !player.UseAmmo()) return;
 
         ShootAtLane(Enemy.Lane.Left);
-        camera.Shake(0.1f, 0.2f);
+        cameraFollow.Shake(0.1f, 0.2f);
     }
 
     private void PerforRightShoot()
@@ -39,7 +39,7 @@ public class CombatSystem : MonoBehaviour
         if (player == null || !player.UseAmmo()) return;
 
         ShootAtLane(Enemy.Lane.Right);
-        camera.Shake(0.1f, 0.2f);
+        cameraFollow.Shake(0.1f, 0.2f);
     }
 
 

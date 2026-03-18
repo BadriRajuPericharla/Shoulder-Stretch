@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public enum GameState { Idle, Running, Combat, Dashboard, Paused }
+public enum GameState { Idle, Running, Combat, Dashboard, Paused, GameOver }
 public enum Difficulty { Beginner, Moderate, Expert }
 public class GameStateManager : MonoBehaviour
 {
@@ -52,7 +52,7 @@ public class GameStateManager : MonoBehaviour
     public void EndGame()
     {
         Time.timeScale = 1f;
-        SetState(GameState.Dashboard);
+        SetState(GameState.GameOver);
     }
     public void ReturnToIdle()
     {
