@@ -103,7 +103,7 @@ public class Enemy : MonoBehaviour
         transform.LookAt(player);
         
 
-        if (distance > 2f)
+        if (distance > 1.5f)
         {
             transform.position += direction * speed * Time.deltaTime;
         }
