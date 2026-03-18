@@ -525,7 +525,6 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
-  - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -601,7 +600,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.1305262, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 3.23, z: -4.74}
+  m_LocalPosition: {x: 0, y: 1.35, z: -7.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -663,23 +662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4ef0e0b972faa49867e46205146fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 5, z: -10}
-  smoothSpeed: 5
---- !u!114 &330585549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4ef0e0b972faa49867e46205146fde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 5, z: -10}
+  target: {fileID: 377453643}
+  offset: {x: 0.02, y: 5, z: -10}
   smoothSpeed: 5
 --- !u!1 &370048905
 GameObject:
@@ -843,13 +827,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputSystem: {fileID: 802350958}
   player: {fileID: 377453640}
-  punchRange: 2
-  punchDamage: 100
   shootRange: 50
   shootDamage: 100
-  bullet: {fileID: 0}
-  bulletTarget: {fileID: 0}
   spawner: {fileID: 0}
+  camera: {fileID: 330585548}
 --- !u!114 &377453640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,6 +848,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   maxAmmo: 10
+  currentAmmo: 0
   shieldDuration: 2
 --- !u!95 &377453642
 Animator:
@@ -889,6 +871,12 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &377453643 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8964c5f24047bae418e50bbaa9302ea0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1369871744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &396685324
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,15 @@ public class Enemy : MonoBehaviour
 
     public enum Lane { Left, Right};
     public Lane lane;
+
+    Animator animator;
+
+    private bool hasAttacked = false;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
     void Awake()
     {
         AmmoPack=transform.Find("AmmoPack").gameObject;
@@ -31,6 +40,9 @@ public class Enemy : MonoBehaviour
         player = target;
         playerCtrl = player.GetComponent<PlayerController>();
         currentHealth = health;
+
+        hasAttacked = false;
+
         if (AmmoPack != null)
         {
             AmmoPack.SetActive(false);
@@ -56,23 +68,33 @@ public class Enemy : MonoBehaviour
             }
             return;
         }
-        if (player.position.z > transform.position.z + 8f)
-        {
-            
-            gameObject.SetActive(false);
-            return;
-        }
+
+        float distance = Vector3.Distance(transform.position, player.position);
+
         if (player == null) return;
         Vector3 direction = (player.position - transform.position).normalized;
         transform.LookAt(player);
-        transform.position += direction * speed * Time.deltaTime;
-        if (Vector3.Distance(transform.position, player.position) < 1.5f) { Attack(); }
         
+
+        if (distance > 3f)
+        {
+            transform.position += direction * speed * Time.deltaTime;
+        }
+        else
+        {
+            
+            if (!hasAttacked)
+            {
+                hasAttacked = true;
+                Attack();
+            }
+        }
     }
     private void Attack()
     {
         if (playerCtrl) playerCtrl.TakeDamage(damage);
-        gameObject.SetActive(false);
+        animator.SetTrigger("IsAttack");
+        
     }
     public void TakeDamage(int amount)
     {
@@ -90,6 +112,10 @@ public class Enemy : MonoBehaviour
             return;
              
         }
+        Invoke(nameof(DisableEnemy), 2f);
+    }
+    void DisableEnemy()
+    {
         OnEnemyDeath?.Invoke(this);
         gameObject.SetActive(false);
     }
