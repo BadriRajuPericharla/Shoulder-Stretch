@@ -9,10 +9,12 @@ public class CombatSystem : MonoBehaviour
     [SerializeField] private int shootDamage = 100;
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject bulletTarget;
+    [SerializeField] private EnemySpawner spawner;
     private void Start()
     {
         if (inputSystem == null) inputSystem = FindFirstObjectByType<InputSystem>();
         if (player == null) player = GetComponent<PlayerController>();
+        if (spawner == null) spawner = FindFirstObjectByType<EnemySpawner>();
         if (inputSystem != null) inputSystem.OnActionPerformed += HandleAction;
     }
     private void OnDestroy() { if (inputSystem != null) inputSystem.OnActionPerformed -= HandleAction; }
@@ -45,11 +47,10 @@ public class CombatSystem : MonoBehaviour
 
     private void ShootAtLane(Enemy.Lane targetLane)
     {
-        Enemy[] enemies = GetComponentsInChildren<Enemy>();
         Enemy closest = null;
         float minDist = shootRange;
 
-        foreach(Enemy enemy in enemies)
+        foreach(Enemy enemy in spawner.activeEnemies)
         {
             if (!enemy.gameObject.activeInHierarchy) continue;
             if(enemy.lane != targetLane) continue;

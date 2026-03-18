@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private PlayerController player;
     [SerializeField] private Enemy enemyPrefab;
     [SerializeField] private float spawnWidth = 8f;
-    [SerializeField] private float spawnDistance = 30f;
+    [SerializeField] private float spawnDistance = 80f;
     [SerializeField]private int Zombies=10;
     [SerializeField] private float SpawnDuration=10f;
     private int spawnedCount;
@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
   
    
     
-    private List<Enemy> pool = new List<Enemy>();
+    public List<Enemy> activeEnemies = new List<Enemy>();
     private float spawnTimer;
     private void Start()
     {
@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
                 Zombies += 5;
                 spawnInterval = SpawnDuration / Zombies;
                 spawnedCount = 0;
-                spawnTimer = 10f;
+                spawnTimer = 15f;
                 currentwave++;
                 return;
             }
@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
                 Zombies += 5;
                 spawnInterval = SpawnDuration / Zombies;
                 spawnedCount = 0;
-                spawnTimer = 10f;
+                spawnTimer = 15f;
                 currentwave++;
                 return;
             }
@@ -82,9 +82,9 @@ public class EnemySpawner : MonoBehaviour
     }
     private Enemy GetFromPool()
     {
-        foreach (var e in pool) if (!e.gameObject.activeInHierarchy) return e;
+        foreach (var e in activeEnemies) if (!e.gameObject.activeInHierarchy) return e;
         Enemy newEnemy = Instantiate(enemyPrefab, transform);
-        pool.Add(newEnemy);
+        activeEnemies.Add(newEnemy);
         return newEnemy;
     }
 }
