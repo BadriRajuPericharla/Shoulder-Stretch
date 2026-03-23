@@ -13,7 +13,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private Enemy enemy;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private EnemySpawner enemySpawner;
-    [SerializeField] private AudioManager audioManager;
+    
     public GameState CurrentState => currentState;
     public Difficulty CurrentDifficulty => currentDifficulty;
     public bool IsPlaying => currentState == GameState.Running || currentState == GameState.Combat;
