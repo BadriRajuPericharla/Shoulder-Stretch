@@ -14,13 +14,10 @@ public class PlayerController : MonoBehaviour
     public int currentHealth;
     [SerializeField] private int maxAmmo = 10;
     public int currentAmmo;
-    [SerializeField] private float shieldDuration = 2.0f;
-    private bool isShieldActive;
-    private float shieldTimer;
+
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
     public int CurrentAmmo => currentAmmo;
-    public bool IsShieldActive => isShieldActive;
 
     public UIManager uiManager;
     private void Awake()
@@ -41,7 +38,6 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth = maxHealth;
         currentAmmo = difficultyScaler?.InitialAmmo ?? 5;
-        isShieldActive = false;
         transform.position = new Vector3(0, 0, 0);
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
         OnAmmoChanged?.Invoke(currentAmmo);
@@ -50,17 +46,10 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (gameManager == null || !gameManager.IsPlaying) return;
-
-        if (isShieldActive)
-        {
-            shieldTimer -= Time.deltaTime;
-            if (shieldTimer <= 0) { isShieldActive = false; OnShieldStatusChanged?.Invoke(false); }
-        }
     }
 
     public void TakeDamage(int damage)
     {
-        if (isShieldActive) return;
         currentHealth -= damage;
         audioManager.PlayPlayerDamageTakenSound();
         uiManager.ShowDamageBlink();
@@ -80,8 +69,6 @@ public class PlayerController : MonoBehaviour
     }
     public void ActivateShield()
     {
-        isShieldActive = true;
-        shieldTimer = shieldDuration;
         OnShieldStatusChanged?.Invoke(true);
     }
     public void AmmoReload(int amount)
