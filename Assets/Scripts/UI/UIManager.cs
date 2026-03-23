@@ -2,10 +2,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 public class UIManager : MonoBehaviour
-{
+{              
     [SerializeField] private GameStateManager gameManager;
-    [SerializeField] private GameObject menuPanel, difficultyPanel, hudPanel, pausePanel, dashboardPanel, analyticsPanel, graphPanel, gameOverPanel, damagePanel;
-    [SerializeField] private Button startButton, beginnerBtn, moderateBtn, expertBtn, dashboardNxtBtn, analyticsNxtBtn, graphNxtBtn, gameOverNextBtn, gameOverRestartBtn;
+    [SerializeField] private GameObject menuPanel, difficultyPanel, hudPanel, pausePanel, dashboardPanel, analyticsPanel, graphPanel, gameOverPanel, levelCompletedPanel, damagePanel;
+    [SerializeField] private Button startButton, beginnerBtn, moderateBtn, expertBtn, dashboardNxtBtn, analyticsNxtBtn, graphNxtBtn, gameOverNextBtn, gameOverRestartBtn, levelCompleteNxtBtn, levelCompleteRestartBtn;
     private void Start()
     {
         if (gameManager == null) gameManager = FindFirstObjectByType<GameStateManager>();
@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
         if (graphNxtBtn) graphNxtBtn.onClick.AddListener(() => gameManager.ReturnToIdle());
         if (gameOverNextBtn) gameOverNextBtn.onClick.AddListener(() => gameManager.SetStateDirectly(GameState.Dashboard));
         if (gameOverRestartBtn) gameOverRestartBtn.onClick.AddListener(() => gameManager.ReturnToIdle());
+        if (levelCompleteNxtBtn) levelCompleteNxtBtn.onClick.AddListener(() => gameManager.SetStateDirectly(GameState.Dashboard));
+        if (levelCompleteRestartBtn) levelCompleteRestartBtn.onClick.AddListener(() => gameManager.ReturnToIdle());
 
         if (gameManager != null) gameManager.OnStateChanged += HandleStateChange;
     }
@@ -53,6 +55,7 @@ public class UIManager : MonoBehaviour
             analyticsPanel?.SetActive(false);
             graphPanel?.SetActive(false);
             gameOverPanel?.SetActive(false);
+            levelCompletedPanel?.SetActive(false);
         }
         else
         {
@@ -61,6 +64,7 @@ public class UIManager : MonoBehaviour
             pausePanel?.SetActive(state == GameState.Paused);
             dashboardPanel?.SetActive(state == GameState.Dashboard);
             gameOverPanel?.SetActive(state == GameState.GameOver);
+            levelCompletedPanel?.SetActive(state == GameState.LevelCompleted);
         }
     }
 

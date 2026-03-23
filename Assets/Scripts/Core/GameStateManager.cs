@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public enum GameState { Idle, Running, Combat, Dashboard, Paused, GameOver }
+public enum GameState { Idle, Running, Combat, Dashboard, Paused, GameOver, LevelCompleted }
 public enum Difficulty { Beginner, Moderate, Expert }
 public class GameStateManager : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private Enemy enemy;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private AudioManager audioManager;
     public GameState CurrentState => currentState;
     public Difficulty CurrentDifficulty => currentDifficulty;
     public bool IsPlaying => currentState == GameState.Running || currentState == GameState.Combat;
@@ -52,6 +53,15 @@ public class GameStateManager : MonoBehaviour
             SetState(GameState.Running);
         }
     }
+    public void LevelCompleted()
+    {
+        Time.timeScale = 1f;
+        SetState(GameState.LevelCompleted);
+        enemy.enabled = false;
+        playerController.enabled = false;
+        enemySpawner.enabled = false;
+    }
+
     public void EndGame()
     {
         Time.timeScale = 1f;

@@ -20,7 +20,7 @@ public class SessionEndController : MonoBehaviour
 
     private void HandleStateChange(GameState state)
     {
-        if(state == GameState.GameOver){
+        if(state == GameState.GameOver || state == GameState.LevelCompleted){
             currentSession = new GameData
             {
                 time = $"{System.TimeSpan.FromSeconds(fitness.Duration):mm\\:ss}",
