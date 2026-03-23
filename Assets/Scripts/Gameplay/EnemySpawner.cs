@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameStateManager gameManager;
     [SerializeField] private DifficultyScaler difficultyScaler;
     [SerializeField] private PlayerController player;
-    [SerializeField] private Enemy enemyPrefab;
+    [SerializeField] private Enemy[] enemyPrefabs;
     [SerializeField] private float spawnWidth = 4f;
     [SerializeField] private float spawnDistance = 80f;
     [SerializeField]private int Zombies=10;
@@ -112,7 +112,8 @@ public class EnemySpawner : MonoBehaviour
     private Enemy GetFromPool()
     {
         foreach (var e in activeEnemies) if (!e.gameObject.activeInHierarchy) return e;
-        Enemy newEnemy = Instantiate(enemyPrefab, transform);
+        int index = Random.Range(0,2);
+        Enemy newEnemy = Instantiate(enemyPrefabs[index], transform);
         activeEnemies.Add(newEnemy);
         return newEnemy;
     }

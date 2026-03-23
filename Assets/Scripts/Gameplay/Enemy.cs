@@ -28,15 +28,18 @@ public class Enemy : MonoBehaviour
     private SkinnedMeshRenderer[] renderers;
     private Material[] originalMaterials;
 
-    [SerializeField] AudioSource audioSource;
-
-    [SerializeField] private AudioClip audioClipZombie;
+    private AudioManager audioManager;
 
     
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        
+        
+        
+        audioManager = FindFirstObjectByType<AudioManager>();
+        
         
     }
     void Awake()
@@ -141,8 +144,13 @@ public class Enemy : MonoBehaviour
             return;
              
         }
+        ScoringSystem.Instance.AddKillPoints();
+        
         animator.SetTrigger("IsDead");
-        audioSource.PlayOneShot(audioClipZombie);
+        if(audioManager != null)
+        {
+            audioManager.PlayZombieDead();
+        }
         Invoke(nameof(DisableEnemy), 2f);
     }
     void DisableEnemy()

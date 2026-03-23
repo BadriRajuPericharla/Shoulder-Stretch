@@ -10,9 +10,15 @@ public class CombatSystem : MonoBehaviour
     [SerializeField] private BulletTracer bulletTracer;
     [SerializeField] private ParticleSystem muzzelFlash;
     [SerializeField] private Transform barrel;
-    [SerializeField] AudioSource audioSource;
 
-    [SerializeField] private AudioClip audioClipShoot;
+    [SerializeField] private Transform ShootLeftObj;
+
+    [SerializeField] private Transform ShootRightObj;
+
+
+
+    public AudioManager audioManager;
+
     private void Start()
     {
         if (inputSystem == null) inputSystem = FindFirstObjectByType<InputSystem>();
@@ -37,7 +43,7 @@ public class CombatSystem : MonoBehaviour
         if (player == null || !player.UseAmmo()) return;
 
         ShootAtLane(Enemy.Lane.Left);
-        audioSource.PlayOneShot(audioClipShoot);
+        audioManager.PlayGunShot();
         cameraFollow.Shake(0.1f, 0.2f);
     }
 
@@ -46,8 +52,7 @@ public class CombatSystem : MonoBehaviour
         if (player == null || !player.UseAmmo()) return;
 
         ShootAtLane(Enemy.Lane.Right);
-        audioSource.PlayOneShot(audioClipShoot);
-
+        audioManager.PlayGunShot();
         cameraFollow.Shake(0.1f, 0.2f);
     }
 
@@ -70,7 +75,9 @@ public class CombatSystem : MonoBehaviour
             }
         }
 
-        Vector3 endPoint = closest != null? closest.transform.position : barrel.position + transform.forward * shootRange;
+        Transform empty = targetLane == Enemy.Lane.Left ? ShootLeftObj : ShootRightObj;
+
+        Vector3 endPoint = closest != null? closest.transform.position : empty.position;
         endPoint = new Vector3(endPoint.x, endPoint.y + 3f, endPoint.z);
 
         muzzelFlash.Play();

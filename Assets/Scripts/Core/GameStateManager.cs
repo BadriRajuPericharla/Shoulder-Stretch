@@ -14,12 +14,16 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private EnemySpawner enemySpawner;
     
+    [SerializeField] private GameObject EnemySpawnerObj;
+
     public GameState CurrentState => currentState;
     public Difficulty CurrentDifficulty => currentDifficulty;
     public bool IsPlaying => currentState == GameState.Running || currentState == GameState.Combat;
     public bool IsPaused => currentState == GameState.Paused;
     private float sessionStartTime;
     public float SessionDuration => Time.time - sessionStartTime;
+
+    
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(gameObject);
@@ -57,9 +61,9 @@ public class GameStateManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SetState(GameState.LevelCompleted);
-        enemy.enabled = false;
-        playerController.enabled = false;
-        enemySpawner.enabled = false;
+        EnemySpawnerObj.SetActive(false);
+        playerController.gameObject.SetActive(false);
+        enemySpawner.gameObject.SetActive(false);
     }
 
     public void EndGame()
@@ -67,14 +71,16 @@ public class GameStateManager : MonoBehaviour
         Time.timeScale = 1f;
         SetState(GameState.GameOver);
         enemy.enabled = false;
-        playerController.enabled = false;
-        enemySpawner.enabled = false;
+        EnemySpawnerObj.SetActive(false);
+        playerController.gameObject.SetActive(false);
+        enemySpawner.gameObject.SetActive(false);
 
     }
     public void ReturnToIdle()
     {
         Time.timeScale = 1f;
         SetState(GameState.Idle);
+        EnemySpawnerObj.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void RestartGame()

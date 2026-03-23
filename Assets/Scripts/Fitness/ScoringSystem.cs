@@ -6,13 +6,12 @@ public class ScoringSystem : MonoBehaviour
     public event Action<int> OnScoreChanged;
     [SerializeField] private GameStateManager gameManager;
     [SerializeField] private InputSystem inputSystem;
-    [SerializeField] private int basePoints = 10;
+    [SerializeField] private int killPoints = 10;
     private int currentScore;
     private int highScore;
-    private int combo;
     public int CurrentScore => currentScore;
     public int HighScore => highScore;
-    public int Combo => combo;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(gameObject);
@@ -22,31 +21,23 @@ public class ScoringSystem : MonoBehaviour
     private void Start()
     {
         if (gameManager == null) gameManager = FindFirstObjectByType<GameStateManager>();
-        if (inputSystem == null) inputSystem = FindFirstObjectByType<InputSystem>();
-        if (inputSystem != null) inputSystem.OnActionPerformed += HandleAction;
         if (gameManager != null) gameManager.OnStateChanged += HandleStateChange;
     }
     private void OnDestroy()
     {
-        if (inputSystem != null) inputSystem.OnActionPerformed -= HandleAction;
         if (gameManager != null) gameManager.OnStateChanged -= HandleStateChange;
     }
-    private void HandleAction(ActionType action, bool success)
+    public  void AddKillPoints()
     {
-        if (success) 
-        { combo++;
-          currentScore += basePoints * combo; 
-          OnScoreChanged?.Invoke(currentScore); 
-        }
-        else 
-          combo = 0;
+        currentScore += killPoints ; 
+        OnScoreChanged?.Invoke(currentScore); 
     }
 
 
 
     private void HandleStateChange(GameState state)
     {
-        if (state == GameState.Running) { currentScore = 0; combo = 0; OnScoreChanged?.Invoke(0); }
+        if (state == GameState.Running) { currentScore = 0;OnScoreChanged?.Invoke(0); }
         else if (state == GameState.Dashboard) SaveScore();
     }
     private void SaveScore() { if (currentScore > highScore) { highScore = currentScore; PlayerPrefs.SetInt("HighScore", highScore); } }
