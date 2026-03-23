@@ -8,7 +8,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField]private AudioClip GunShot;
     [SerializeField]private AudioClip ButtonClick;
     [SerializeField]private AudioClip ZombieDead;
-    [SerializeField]private AudioClip PlayerDead;
     [SerializeField]private AudioClip WavesSound;
     [SerializeField] private AudioClip playerHurtSound;
     public void PlayGunShot()
@@ -22,10 +21,6 @@ public class AudioManager : MonoBehaviour
     public void PlayZombieDead()
     {
         audioSource.PlayOneShot(ZombieDead);
-    }
-    public void PlayPlayerDead()
-    {
-        audioSource.PlayOneShot(PlayerDead);
     }
     public void PlayWavesSound()
     {
