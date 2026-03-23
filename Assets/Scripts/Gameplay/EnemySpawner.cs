@@ -9,20 +9,21 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private DifficultyScaler difficultyScaler;
     [SerializeField] private PlayerController player;
     [SerializeField] private Enemy enemyPrefab;
-    [SerializeField] private float spawnWidth = 8f;
+    [SerializeField] private float spawnWidth = 4f;
     [SerializeField] private float spawnDistance = 80f;
     [SerializeField]private int Zombies=10;
-    [SerializeField] private float SpawnDuration=10f;
+    [SerializeField] private float SpawnDuration=20f;
     [SerializeField]private TextMeshProUGUI wavesText;
     private int spawnedCount;
     private int currentwave=1;
     private float spawnInterval;
-    
+    [SerializeField]private AudioManager audioManager;
   
    
     
     public List<Enemy> activeEnemies = new List<Enemy>();
     private float spawnTimer;
+    private bool gameStarted;
     private void Start()
     {
         if (gameManager == null) gameManager = FindFirstObjectByType<GameStateManager>();
@@ -30,12 +31,16 @@ public class EnemySpawner : MonoBehaviour
         if (player == null) player = FindFirstObjectByType<PlayerController>();
         spawnInterval=SpawnDuration/Zombies;
         wavesText.text = "Wave-1";
-        StartCoroutine(Wavetimer());
         spawnTimer=2f;
     }
     private void Update()
     {
         if (gameManager == null || !gameManager.IsPlaying) return;
+        if (gameManager.IsPlaying && !gameStarted)
+        {
+            gameStarted=true;
+            StartCoroutine(Wavetimer());
+        }
         spawnTimer -= Time.deltaTime;
         if (spawnedCount >= Zombies&&!AreEnemiesAlive())
         {
@@ -52,7 +57,12 @@ public class EnemySpawner : MonoBehaviour
 
                 return;
             }
-            else return;
+            else
+            {
+                gameManager.LevelCompleted();
+                return;
+            }
+            ;
         }
         
         
@@ -64,6 +74,7 @@ public class EnemySpawner : MonoBehaviour
     }
     IEnumerator Wavetimer()
     {
+        audioManager.PlayWavesSound();
         wavesText.gameObject.SetActive(true);
         yield return new WaitForSeconds(2);
         wavesText.gameObject.SetActive(false);
@@ -71,17 +82,16 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         Enemy enemy = GetFromPool();
-        //float xOffset;
+        float xOffset;
 
-        //if (Random.value > 0.5f)
-        //    xOffset = Random.Range(2f, spawnWidth);     
-        //else
-        //    xOffset = Random.Range(-spawnWidth, -2f);
-        //Vector3 pos = player.transform.position + Vector3.forward * spawnDistance + Vector3.right * xOffset;
+        if (Random.value > 0.5f)
+           xOffset = Random.Range(2f, spawnWidth);     
+        else
+           xOffset = Random.Range(-spawnWidth, -2f);
+        Vector3 pos = player.transform.position + Vector3.forward * spawnDistance + Vector3.right * xOffset;
 
-        bool spwanLeft = Random.value < 0.5;
-        float laneX = spwanLeft ? -3f : 3f;
-        Vector3 pos = new Vector3(laneX, 0, spawnDistance);
+        bool spwanLeft = xOffset >= 0 ? false: true;
+
     
         enemy.transform.position = pos;
         enemy.lane = spwanLeft? Enemy.Lane.Left : Enemy.Lane.Right;
