@@ -8,27 +8,27 @@ public class AudioManager : MonoBehaviour
     [SerializeField]private AudioClip GunShot;
     [SerializeField]private AudioClip ButtonClick;
     [SerializeField]private AudioClip ZombieDead;
-    void Start()
+    [SerializeField]private AudioClip PlayerDead;
+    [SerializeField]private AudioClip WavesSound;
+    public void PlayGunShot()
     {
-        
+        audioSource.PlayOneShot(GunShot);
+    }
+    public void PlayButtonClick()
+    {
+        audioSource.PlayOneShot(ButtonClick);
+    }
+    public void PlayZombieDead()
+    {
+        audioSource.PlayOneShot(ZombieDead);
+    }
+    public void PlayPlayerDead()
+    {
+        audioSource.PlayOneShot(PlayerDead);
+    }
+    public void PlayWavesSound()
+    {
+        audioSource.PlayOneShot(WavesSound);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            
-            audioSource.PlayOneShot(GunShot);
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            audioSource.PlayOneShot(ButtonClick);
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            audioSource.PlayOneShot(ZombieDead);
-            
-        }
-    }
 }
