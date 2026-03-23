@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public event Action OnPlayerDeath;
     [SerializeField] private GameStateManager gameManager;
     [SerializeField] private DifficultyScaler difficultyScaler;
+    [SerializeField] private AudioManager audioManager;
     [SerializeField] private int maxHealth = 100;
     public int currentHealth;
     [SerializeField] private int maxAmmo = 10;
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isShieldActive) return;
         currentHealth -= damage;
+        audioManager.PlayPlayerDamageTakenSound();
         uiManager.ShowDamageBlink();
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
         if (currentHealth <= 0) Die();
